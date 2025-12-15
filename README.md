@@ -306,9 +306,8 @@ docker-compose exec django-api python manage.py shell -c \
 **Role:** Solo Developer (full-stack, DevOps, deployment)
 **Technologies:** Django, PostgreSQL, Docker, Nginx, LDAP
 
----
-
-**Production URL:** https://resupekka.samk.fi
 **Deployed:** August 2025
 **Status:** Active production system serving 582 users
 **Uptime:** 4+ months with zero downtime
+
+> **Note:** Production system is network-restricted (accessible only within SAMK infrastructure)
