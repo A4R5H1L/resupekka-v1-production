@@ -195,6 +195,82 @@ PGADMIN_DEFAULT_PASSWORD=<configured>
 
 ## Nginx Proxy Manager Configuration
 
+### Two-Stack Architecture
+
+**Design Decision:**
+Nginx and Django are deployed as **two separate Docker Compose stacks** connected via an external network:
+
+```
+nginx-proxy-manager/
+├── docker-compose.yml        # Nginx stack
+├── data/                      # Nginx config
+└── letsencrypt/               # SSL certificates
+
+samk-resupekka/
+├── docker-compose.yml        # Django stack
+├── src/                      # Application code
+└── docker/                   # Dockerfiles
+```
+
+**Nginx Stack (nginx-proxy-manager/docker-compose.yml):**
+```yaml
+services:
+  nginx-proxy-manager:
+    image: 'jc21/nginx-proxy-manager:latest'
+    ports:
+      - '80:80'              # HTTP
+      - '443:443'            # HTTPS
+      - '127.0.0.1:81:81'    # Admin UI (localhost only)
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+    networks:
+      - nginx-proxy         # External network
+
+networks:
+  nginx-proxy:
+    external: true          # Shared with Django stack
+```
+
+**Django Stack Connection (samk-resupekka/docker-compose.yml):**
+```yaml
+services:
+  django-api:
+    expose:
+      - "8000"             # Internal only, no external ports
+    networks:
+      - nginx-proxy        # Same external network
+      - internal           # Private database network
+
+networks:
+  nginx-proxy:
+    external: true         # Created by Nginx stack
+  internal:
+    driver: bridge         # Isolated database network
+```
+
+**Architecture Benefits:**
+
+✅ **Independent Deployment**
+- Update Django app without restarting Nginx (zero downtime)
+- Redeploy Nginx without touching Django
+- Rollback one stack independently
+
+✅ **Separation of Concerns**
+- Nginx = infrastructure layer (SSL, routing, firewall)
+- Django = application layer (business logic)
+- Clear responsibility boundaries
+
+✅ **Scalability**
+- Can add more applications behind same Nginx
+- Same SSL certificates for multiple apps
+- Shared reverse proxy infrastructure
+
+✅ **Security**
+- Django has NO external ports exposed
+- Only Nginx faces public internet
+- Database completely network-isolated
+
 ### Reverse Proxy Setup
 
 **Purpose:**
