@@ -1,0 +1,36 @@
+# Resupekka V1 Architecture Documentation
+# This repository contains ONLY architecture documentation
+# No source code, secrets, or proprietary information
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Editor and IDE files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Temporary files
+*.tmp
+*.bak
+*.log
+
+# Python cache (if any scripts are added)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Documentation build artifacts (if using doc generators)
+_build/
+site/
+
+# Personal notes
+notes.txt
+TODO.txt
+SCRATCH.md
