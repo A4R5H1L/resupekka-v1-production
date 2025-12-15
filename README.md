@@ -63,7 +63,7 @@ Resupekka was developed as my **first professional software project** during a 4
 **Timeline:**
 - **Month 1:** Requirements gathering, technology selection, database design
 - **Month 2:** Core development (Django models, LDAP auth, basic CRUD)
-- **Month 3:** Advanced features (approval workflows, dashboards, REST API)
+- **Month 3:** Advanced features (approval workflows, dashboards, permission system)
 - **Month 4:** Deployment, data migration (582 users, initial allocations), user training
 
 **Outcome:**
@@ -83,10 +83,10 @@ Resupekka was developed as my **first professional software project** during a 4
 ## Skills Demonstrated
 
 ### Full-Stack Development
-- **Backend:** Django 5.2.6 with Django REST Framework, custom authentication handlers
+- **Backend:** Django 5.2.6 with custom authentication handlers, session management
 - **Database:** PostgreSQL schema design with foreign key constraints, audit tables, complex queries
 - **Frontend:** Django templates, server-side rendering, responsive dashboards
-- **API Design:** RESTful endpoints with token authentication, pagination, filtering
+- **Future-proofing:** REST API infrastructure ready (Django REST Framework 3.16.0) for potential React migration or programmatic access
 
 ### DevOps & Infrastructure
 - **Containerization:** Docker Compose orchestration for multi-service application
@@ -161,9 +161,9 @@ Resupekka was developed as my **first professional software project** during a 4
 7. **Audit Dashboard** - Complete change history with django-simple-history
 8. **Multi-Department Support** - 5 departments (TKI, PATA, HYVO, TECH, OPVA)
 9. **Research Unit Organization** - 9 research centers and units
-10. **REST API** - Full programmatic access with token authentication
-11. **Dashboard Analytics** - Real-time allocation visibility for managers
-12. **Admin Interface** - Django admin for system management
+10. **Dashboard Analytics** - Real-time allocation visibility for managers
+11. **Admin Interface** - Django admin for system management
+12. **Future-Ready Architecture** - REST API infrastructure for potential frontend framework migration
 
 ## Architecture Overview
 

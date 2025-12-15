@@ -63,7 +63,7 @@ src/
 2. **apps.core** - Project management, research units, roles, project status
 3. **apps.allocations** - Work allocations, contracts, allocation types
 4. **apps.workflows** - Request approval workflows with token-based approval
-5. **apps.api** - RESTful API layer for programmatic access
+5. **apps.api** - REST API infrastructure (DRF endpoints ready for future frontend framework migration)
 
 **Middleware Stack:**
 - CORS middleware (cross-origin support)
